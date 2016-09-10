@@ -11,4 +11,5 @@ install:
   - pip install -r requirements.txt
 
 script:
-  - python wsgi/myproject/manage.py behave
+  - cd wsgi/myproject
+  - python manage.py behave
