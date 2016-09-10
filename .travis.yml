@@ -1,0 +1,18 @@
+language: python
+python:
+  - "3.3"
+
+branches:
+  only:
+    - master
+    - desenvolvimento
+
+install:
+  - pip install -r requirements.txt
+
+script:
+  - python manage.py behave
+
+
+notifications:
+  slack: leds:yDK4DPqIeIJJjOm7UjJTiVXh
