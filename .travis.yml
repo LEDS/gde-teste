@@ -12,7 +12,3 @@ install:
 
 script:
   - python manage.py behave
-
-
-notifications:
-  slack: leds:yDK4DPqIeIJJjOm7UjJTiVXh
