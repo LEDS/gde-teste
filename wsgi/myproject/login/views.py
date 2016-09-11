@@ -26,3 +26,6 @@ def login_success(request):
 
 def login_fail(request):
     return render(request, 'login_fail.html')
+
+def home(request):
+    return render(request, 'home.html')
