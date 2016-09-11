@@ -19,3 +19,4 @@ deploy:
   domain: paulossjunior
   on:
     repo: paulossjunior/ledszeppellin
+    all_branches: true
