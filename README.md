@@ -32,16 +32,15 @@ Para criar a nossa aplicação no ambiente do OpenShift é necessário executar 
     rhc app create aplicacaoX python-3.3 postgresql-9.2
 
 Esse comando está informando ao OpenShift que desejamos criar uma aplicação que use python 3.3 e postgresql 9.2. Quando o criamos uma aplicação o OpenShift copia alguns arquivo para o máquina local. Esses arquivos não serão úteis para o nosso projeto. Assim, iremos apagá-los:
-    
-   cd aplicacaoX
-   git rm -rf *
-   git commit -am "deleted project"
+    cd aplicacaoX
+    git rm -rf *
+    git commit -am "deleted project"
    
 O próximo passo é usarmos um template de projeto que utiliza Django e Python, disponibilizado pela equipe do OpenShift, para o nosso projeto.
 
-   git remote add upstream -m master git://github.com/openshift/django-example.git
-   git pull -s recursive -X theirs upstream master
-   git remote rename origin openshift
+    git remote add upstream -m master git://github.com/openshift/django-example.git
+    git pull -s recursive -X theirs upstream master
+    git remote rename origin openshift
    
 É importante comentar que o OpenShift trabalha de duas formas para gerenciar as dependências de biblioteas do projeto: (i) utilizando o arquivo de Setup.py ou requirimentes.txt.  
 
