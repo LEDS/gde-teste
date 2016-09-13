@@ -32,6 +32,7 @@ Para criar a nossa aplicação no ambiente do OpenShift é necessário executar 
     rhc app create aplicacaoX python-3.3 postgresql-9.2
 
 Esse comando está informando ao OpenShift que desejamos criar uma aplicação que use python 3.3 e postgresql 9.2. Quando o criamos uma aplicação o OpenShift copia alguns arquivo para o máquina local. Esses arquivos não serão úteis para o nosso projeto. Assim, iremos apagá-los:
+
     cd aplicacaoX
     git rm -rf *
     git commit -am "deleted project"
