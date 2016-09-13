@@ -1,77 +1,61 @@
-Django on OpenShift
-===================
+**Build Status**: [![Build Status](https://travis-ci.org/paulossjunior/ledszeppellin_2.png)](https://travis-ci.org/paulossjunior/ledszeppellin_2)
 
-This git repository helps you get up and running quickly w/ a Django
-installation on OpenShift.  The Django project name used in this repo
-is 'myproject' but you can feel free to change it.  Right now the
-backend is sqlite3 and the database runtime is found in
-`$OPENSHIFT_DATA_DIR/db.sqlite3`.
+# LedsZeppellin: Exemplificando a Integração Contínua e Entrega Contínuo do Leds
 
-Before you push this app for the first time, you will need to change
-the [Django admin password](#admin-user-name-and-password).
-Then, when you first push this
-application to the cloud instance, the sqlite database is copied from
-`wsgi/myproject/db.sqlite3` with your newly changed login
-credentials. Other than the password change, this is the stock
-database that is created when `python manage.py syncdb` is run with
-only the admin app installed.
+## Introdução
 
-On subsequent pushes, a `python manage.py syncdb` is executed to make
-sure that any models you added are created in the DB.  If you do
-anything that requires an alter table, you could add the alter
-statements in `GIT_ROOT/.openshift/action_hooks/alter.sql` and then use
-`GIT_ROOT/.openshift/action_hooks/deploy` to execute that script (make
-sure to back up your database w/ `rhc app snapshot save` first :) )
+O **LedsZeppellin** é um exemplo de aplicação web que visa apresentar como construir sistemas utilizando técnicas de Integração contínua e Entregas Contínuas. Para o desenvolvimento desse tutorial utilizaremos as seguintes tecnologias:
 
-You can also turn on the DEBUG mode for Django application using the
-`rhc env set DEBUG=True --app APP_NAME`. If you do this, you'll get
-nicely formatted error pages in browser for HTTP 500 errors.
+    Linguagem de Programação: Python
+    Framework Web: Django
+    Repositório de códigos: GitHub
+    Framework de Behavior Driven Development: Behave
+    Serviço de Integração Contínua: Travis
+    Serviço de Deploy de aplicação: OpenShift
 
-Do not forget to turn this environment variable off and fully restart
-the application when you finish:
+### Pré-requisitos:
 
-```
-$ rhc env unset DEBUG
-$ rhc app stop && rhc app start
-```
+1. [Instalar e configurar o OpenShift e o Travis localmente](https://blog.openshift.com/how-to-build-and-deploy-openshift-java-projects-using-travis-ci/).
+2. Instalar o Python 3.3.
 
-Running on OpenShift
---------------------
+## Etapa Zero: Um pouco de conceitos
 
-Create an account at https://www.openshift.com
+>"Integração Contínua é uma pratica de desenvolvimento de software onde os membros de um time integram seu trabalho frequentemente, geralmente cada pessoa integra pelo menos diariamente – podendo haver multiplas integrações por dia. Cada integração é verificada por um ***build automatizado (incluindo testes)*** para detectar erros de integração o mais rápido possível. Muitos times acham que essa abordagem leva a uma significante redução nos problemas de integração e permite que um time desenvolva software coeso mais rapidamente." ***[Martin Fowler](http://martinfowler.com/articles/continuousIntegration.html) -  [Caelum](http://blog.caelum.com.br/integracao-continua/)***
 
-Install the RHC client tools if you have not already done so:
+
+## Segunda etapa: Construir uma aplicação com teste
+
+A nossa aplicação será hospedada no **OpenShift**. O [OpenShift](https://www.openshift.com/) é um PASS (Platforma-as-a-Service) que permite aos desenvolvedores, de forma rápida, o desenvolvimento, hospedagem e a escala de suas aplicações em um ambiente cloud. 
+
+Para criar a nossa aplicação no ambiente do OpenShift é necessário executar o seguinte comando:
     
-    sudo gem install rhc
-    rhc setup
+    rhc app create aplicacaoX python-3.3 postgresql-9.2
 
-Select the version of python (2.7 or 3.3) and create a application
+Esse comando está informando ao OpenShift que desejamos criar uma aplicação que use python 3.3 e postgresql 9.2. Quando o criamos uma aplicação o OpenShift copia alguns arquivo para o máquina local. Esses arquivos não serão úteis para o nosso projeto. Assim, iremos apagá-los:
+    
+   cd aplicacaoX
+   git rm -rf *
+   git commit -am "deleted project"
+   
+O próximo passo é usarmos um template de projeto que utiliza Django e Python, disponibilizado pela equipe do OpenShift, para o nosso projeto.
 
-    rhc app create django python-$VERSION
+   git remote add upstream -m master git://github.com/openshift/django-example.git
+   git pull -s recursive -X theirs upstream master
+   git remote rename origin openshift
+   
+É importante comentar que o OpenShift trabalha de duas formas para gerenciar as dependências de biblioteas do projeto: (i) utilizando o arquivo de Setup.py ou requirimentes.txt.  
 
-Add this upstream repo
+## Aumatizando a Integração Contínua com o Travis e Github
 
-    cd django
-    git remote add upstream -m master git://github.com/openshift/django-example.git
-    git pull -s recursive -X theirs upstream master
 
-Then push the repo upstream
+## Delivery Contínuo 
 
-    git push
+### Com OpenShift 
 
-Now, you have to create [admin account](#admin-user-name-and-password), so you 
-can setup your Django instance.
-	
-That's it. You can now checkout your application at:
+##Referências:
 
-    http://django-$yournamespace.rhcloud.com
+**[Tutorial de BDD com Python, Django e Behave](https://semaphoreci.com/community/tutorials/setting-up-a-bdd-stack-on-a-django-application)**
 
-Admin user name and password
-----------------------------
-Use `rhc ssh` to log into python gear and run this command:
+**[How to Build and Deploy OpenShift Java Projects using Travis CI](https://blog.openshift.com/how-to-build-and-deploy-openshift-java-projects-using-travis-ci/)**
 
-	python $OPENSHIFT_REPO_DIR/wsgi/myproject/manage.py createsuperuser
-
-You should be now able to login at:
-
-	http://django-$yournamespace.rhcloud.com/admin/
+**[Integração Contínua e o processo Agile](http://blog.caelum.com.br/integracao-continua/)**
