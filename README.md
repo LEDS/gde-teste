@@ -12,6 +12,7 @@ O **LedsZeppellin** é um exemplo de aplicação web que visa apresentar como co
     Framework de Behavior Driven Development: Behave
     Serviço de Integração Contínua: Travis
     Serviço de Deploy de aplicação: OpenShift
+    Serviço de Controle de Versão: Git
 
 ### Pré-requisitos:
 
@@ -29,11 +30,11 @@ A nossa aplicação será hospedada no **OpenShift**. O [OpenShift](https://www.
 
 Para criar a nossa aplicação no ambiente do OpenShift é necessário executar o seguinte comando:
     
-    rhc app create aplicacaoX python-3.3 postgresql-9.2
+    rhc app create ledszeppellin python-3.3 postgresql-9.2
 
-Esse comando está informando ao OpenShift que desejamos criar uma aplicação que use python 3.3 e postgresql 9.2. Quando o criamos uma aplicação o OpenShift copia alguns arquivo para o máquina local. Esses arquivos não serão úteis para o nosso projeto. Assim, iremos apagá-los:
+Esse comando está informando ao OpenShift que desejamos criar uma aplicação com um o nome de **ledszeppellin** que use python 3.3 e postgresql 9.2 . Quando o criamos uma aplicação o OpenShift copia alguns arquivo para o máquina local. Esses arquivos não serão úteis para o nosso projeto. Assim, iremos apagá-los:
 
-    cd aplicacaoX
+    cd ledszeppellin
     git rm -rf *
     git commit -am "deleted project"
    
@@ -41,9 +42,14 @@ O próximo passo é usarmos um template de projeto que utiliza Django e Python, 
 
     git remote add upstream -m master git://github.com/openshift/django-example.git
     git pull -s recursive -X theirs upstream master
+
+Observe que agora temos uma aplicação configurada para funcionar dentro do OpenShift. Para realizar o teste da nossa aplicação, basta executar o seguinte comando:
+
+    git push
+Ao realizar o **push** no 
+É importante comentar que o OpenShift trabalha de duas formas para gerenciar as dependências de biblioteas do projeto: (i) utilizando o arquivo de **setup.py** ou requirimentes.txt.  
+
     git remote rename origin openshift
-   
-É importante comentar que o OpenShift trabalha de duas formas para gerenciar as dependências de biblioteas do projeto: (i) utilizando o arquivo de Setup.py ou requirimentes.txt.  
 
 ## Aumatizando a Integração Contínua com o Travis e Github
 
