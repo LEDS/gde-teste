@@ -4,7 +4,7 @@
 
 ## Introdução
 
-O **LedsZeppellin** é um exemplo de aplicação web que visa apresentar como construir sistemas utilizando técnicas de Integração contínua e Entregas Contínuas. Para o desenvolvimento desse tutorial utilizaremos as seguintes tecnologias: bla bla 
+O **LedsZeppellin** é um exemplo de aplicação web que visa apresentar como construir sistemas utilizando técnicas de Integração contínua e Entregas Contínuas. Para o desenvolvimento desse tutorial utilizaremos as seguintes tecnologias: 
 
     Linguagem de Programação: Python
     Framework Web: Django
