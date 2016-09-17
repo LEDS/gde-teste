@@ -1,6 +1,6 @@
-**Build Status**: [![Build Status](https://travis-ci.org/paulossjunior/ledszeppellin.png)](https://travis-ci.org/paulossjunior/ledszeppellin)
-
 # LedsZeppellin: Exemplificando a Integração Contínua e Entrega Contínuo do Leds
+
+**Build Status**: [![Build Status](https://travis-ci.org/paulossjunior/ledszeppellin.png)](https://travis-ci.org/paulossjunior/ledszeppellin)
 
 ## Introdução
 
