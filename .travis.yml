@@ -31,7 +31,7 @@ deploy:
   app: ledszeppellin
   domain: paulossjunior
   on:
-    repo: paulossjunior/ledszeppellin
+    repo: leds/ledszeppellin
     all_branches: true
 
 
