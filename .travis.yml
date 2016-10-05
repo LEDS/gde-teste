@@ -15,7 +15,9 @@ install:
   - pip install -r requirements.txt
 
 script:
-  - python wsgi/project/manage.py behave
+  - cd wsgi/myproject
+  - python manage.py behave
+  - cd ~
 
 after_script:
   - ./sonar-runner-2.4/bin/sonar-runner
