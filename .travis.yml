@@ -27,6 +27,5 @@ deploy:
 
 after_script:
   - ./sonar-runner-2.4/bin/sonar-runner
-  - docker-compose down
 notifications:
 slack: leds:ecBlZedCK8tpP1X5uygKMS8q
