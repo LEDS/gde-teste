@@ -1,19 +1,23 @@
 language: python
 python:
 - '3.3'
+
 before_install:
   - wget http://repo1.maven.org/maven2/org/codehaus/sonar/runner/sonar-runner-dist/2.4/sonar-runner-dist-2.4.zip
-- unzip sonar-runner-dist-2.4.zip 
+  - unzip sonar-runner-dist-2.4.zip 
 
 branches:
   only:
   - master
   - desenvolvimento
+
 install:
-- pip install -r requirements.txt
+  - pip install -r requirements.txt
+
 script:
-- cd wsgi/myproject
-- python manage.py behave
+  - cd wsgi/myproject
+  - python manage.py behave
+
 deploy:
   provider: openshift
   user: paulossjunior@gmail.com
@@ -27,5 +31,6 @@ deploy:
 
 after_script:
   - ./sonar-runner-2.4/bin/sonar-runner
+
 notifications:
-slack: leds:ecBlZedCK8tpP1X5uygKMS8q
+  slack: leds:ecBlZedCK8tpP1X5uygKMS8q
