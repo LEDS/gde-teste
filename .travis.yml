@@ -2,10 +2,13 @@ language: python
 python:
 - '3.3'
 
-before_install:
-  - wget http://repo1.maven.org/maven2/org/codehaus/sonar/runner/sonar-runner-dist/2.4/sonar-runner-dist-2.4.zip
-  - unzip sonar-runner-dist-2.4.zip 
-
+addons:
+  sonarqube: true
+  
+env:
+  global:
+    - secure: SONAR_TOKEN=d695155e0f9a075d9f3c42df899cd501bf096ede # defines SONAR_TOKEN=abcdef0123456789
+  
 branches:
   only:
   - master
@@ -17,12 +20,7 @@ install:
 script:
   - cd wsgi/myproject
   - python manage.py behave
-  - cd ..
-  - cd ..
-
-after_script:
-  - ./sonar-runner-2.4/bin/sonar-runner
-
+  - sonar-scanner -Dsonar.login=$SONAR_TOKEN 
 deploy:
   provider: openshift
   user: paulossjunior@gmail.com
