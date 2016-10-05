@@ -17,7 +17,8 @@ install:
 script:
   - cd wsgi/myproject
   - python manage.py behave
-  - cd ~
+  - cd ..
+  - cd ..
 
 after_script:
   - ./sonar-runner-2.4/bin/sonar-runner
