@@ -3,7 +3,6 @@ python:
   - '3.3'
 jdk:
   - oraclejdk8
-  
 addons:
   apt:
     packages:
@@ -24,8 +23,7 @@ install:
 
 before_script:
   - export JAVA_HOME=/usr/lib/jvm/java-8-oracle
-
-
+  
 script:
   - cd wsgi/myproject
   - python manage.py behave
@@ -41,9 +39,9 @@ deploy:
   app: ledszeppellin
   domain: paulossjunior
   on:
-    repo: leds/ledszeppellin
+    repo: LEDS/ledszeppellin
     all_branches: true
 
 
-#notifications:
-#  slack: leds:ecBlZedCK8tpP1X5uygKMS8q
+notifications:
+  slack: leds:ecBlZedCK8tpP1X5uygKMS8q
