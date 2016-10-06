@@ -23,15 +23,14 @@ install:
   - pip install -r requirements.txt
 
 before_script:
-  - echo $JAVA_HOME
-  - java -version
   - export JAVA_HOME=/usr/lib/jvm/java-8-oracle
 
 
 script:
   - cd wsgi/myproject
   - python manage.py behave
-  - java -version
+  - cd ..
+  - cd ..
   - sonar-scanner -Dsonar.login=$SONAR_TOKEN 
   
 deploy:
