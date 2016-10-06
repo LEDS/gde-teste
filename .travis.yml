@@ -27,6 +27,11 @@ script:
   - cd wsgi/myproject
   - python manage.py behave
   - sonar-scanner -Dsonar.login=$SONAR_TOKEN 
+  
+cache:
+  directories:
+    - '$HOME/.sonar/cache'
+
 deploy:
   provider: openshift
   user: paulossjunior@gmail.com
