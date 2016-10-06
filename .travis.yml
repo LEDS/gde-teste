@@ -7,8 +7,6 @@ addons:
     packages:
       - oracle-java8-installer
   sonarqube: true
-
- 
   
 env:
   global:
@@ -25,15 +23,8 @@ install:
 script:
   - cd wsgi/myproject
   - python manage.py behave
-  - cd ..
-  - cd..
-  - ./runSonarQubeAnalysis.sh
-#  - sonar-scanner -Dsonar.login=$SONAR_TOKEN 
+  - sonar-scanner -Dsonar.login=$SONAR_TOKEN 
   
-cache:
-  directories:
-    - '$HOME/.sonar/cache'
-
 deploy:
   provider: openshift
   user: paulossjunior@gmail.com
@@ -46,5 +37,5 @@ deploy:
     all_branches: true
 
 
-notifications:
-  slack: leds:ecBlZedCK8tpP1X5uygKMS8q
+#notifications:
+#  slack: leds:ecBlZedCK8tpP1X5uygKMS8q
