@@ -26,6 +26,8 @@ install:
 script:
   - cd wsgi/myproject
   - python manage.py behave
+  - cd ..
+  - cd..
   - ./runSonarQubeAnalysis.sh
 #  - sonar-scanner -Dsonar.login=$SONAR_TOKEN 
   
