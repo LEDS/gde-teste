@@ -1,32 +1,37 @@
 language: python
 python:
-  - '3.3'
+- '3.3'
 jdk:
-  - oraclejdk8
+- oraclejdk8
 addons:
   apt:
     packages:
-      - oracle-java8-installer
+    - oracle-java8-installer
   sonarqube: true
-  
 env:
   global:
   - secure: 1dsvLopQ6y/+EwsLyj3zF978RED1Nw1wzRuTJBUHQj576US6OyYOBt/R7xls/EE5lyuVaNEcsN1OcDNuE1THJIQiXSqn2byYgjlPkfVsWf8Dif8JsjZigtGpW3i7FL5l6YNOw4dgMide/9Qhny6pEcuwNpLhLDBWISAfYX2DfArfEAKZROp3roiDG1sf6GZX98BMH1MTvQU8+OkPoudxNZJZxF+XO3Anjd0kLFuwiSn4B56iwnAdiNn3P1j/S5clNSBpo37npr9C76ZDV0cYugxD+apQrm/rkfrRaQ7uByRGHwUrYdgnuI80WVLpj1AoxnoE7AdZo3dgZifhnrD/y9R2UOHzGK1tvLVnK+EvDVsTTmUry8gVgpANAVpQBmio6W9cHNmMcMD19oWGm2cpcf8WRz3dXZ73g5eUoSf4IcSTM3rGdNyVH9sEA25AwUU1KVdJLWmPRUOO5VQfrY1kMfFpSUsjcB25Mvyz3b3Runh14S0dJtDQTZ/KxxhD7toQ1ENrC+/PH/S3ELQxj5sNtpuN8rGdPa6WFCOYUWQK5oFUTz5jhxk1SMbRNWMwnAx+u1DThkAABfY3WlewtehDP/vKlaIfSif/vhFFtNRP0fPSxmJS4H022Xg2fXcV2shKoNz47xU6T8rHGUaHesRO6A7ZnWQ4OwNQ+qN6kPK7H+0=
-  
 branches:
   only:
   - master
   - desenvolvimento
-
 install:
-  - pip install -r requirements.txt
-
+ - pip install -r requirements.txt
 before_script:
-  - export JAVA_HOME=/usr/lib/jvm/java-8-oracle
-  
+ - export JAVA_HOME=/usr/lib/jvm/java-8-oracle
 script:
-  - cd wsgi/myproject
-  - python manage.py behave
-  - cd ..
-  - cd ..
-  - sonar-scanner -Dsonar.login=$SONAR_TOKEN 
+ - cd wsgi/myproject
+ - python manage.py behave
+ - cd ..
+ - cd ..
+ - sonar-scanner -Dsonar.login=$SONAR_TOKEN
+
+deploy:
+  provider: openshift
+  user: projetogde@gmail.com
+  password:
+    secure: ooQhaP3R0tGZMR7eIfLDRvszcZRLeWwp9Jcf1xiY6AzssON3W1L+XXLt3ujj+lEb5yUCwMZP8xA8MpCt2bodfrAkARCyZZxNtLqyJmkv2tWDmCB9EKKnjl3x1o3+WGNrqOz06wqHkfow2CYS9Dkl7g+q3FYpD8ADRNHEpjfAtLqCMzUYSiAHudA/nmUU9yL2mDl24AYNfRnx929qTvLtpIObTO/OKxlJHGLop+sRPCpu6EwHRRT07JFGXFgm3lwdda+Uib0MeYGccwx+5+DVABhtHqZPvqJxkCJPf+oqCCKNxJ2V6EtrmFJtqfSY8Z1S7mZyDL+jshVPCmDQHm8ZtnqgTj6SENs7pqPrVj7B0aooID7rsqqs7WHaRISE483J64yMvrv7WlAoAnnibhuFsjEWQlfLAVNtiwtm6XfSsRu6886MkxyrJ2W93JxILya0+yv+1jKQyhWMIZjnafVL+vXHrwwiD4/y+A45+AbpLGb4nbul2ujRNBE/r311QLhUu/77tkR2W3H+6xO7iZRsYPH5IfdVSzycdnYP4QxIWXHkRdUA46lzOSrrjNNeVAS8T52ys69Ozw251E78ZcQ0ahZu7xr+tea2RJyCmqlqu9ePZjtmHuF/FtHn6Cs84RXxCo3FRb4nSHk+kNb6yir5hjxjZljxzgVoPiyn7Ew/hqc=
+  app: gde-teste
+  domain: projetogde
+  on:
+    repo: LEDS/gde-teste
