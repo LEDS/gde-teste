@@ -31,7 +31,7 @@ deploy:
   user: projetogde@gmail.com
   password:
     secure: ooQhaP3R0tGZMR7eIfLDRvszcZRLeWwp9Jcf1xiY6AzssON3W1L+XXLt3ujj+lEb5yUCwMZP8xA8MpCt2bodfrAkARCyZZxNtLqyJmkv2tWDmCB9EKKnjl3x1o3+WGNrqOz06wqHkfow2CYS9Dkl7g+q3FYpD8ADRNHEpjfAtLqCMzUYSiAHudA/nmUU9yL2mDl24AYNfRnx929qTvLtpIObTO/OKxlJHGLop+sRPCpu6EwHRRT07JFGXFgm3lwdda+Uib0MeYGccwx+5+DVABhtHqZPvqJxkCJPf+oqCCKNxJ2V6EtrmFJtqfSY8Z1S7mZyDL+jshVPCmDQHm8ZtnqgTj6SENs7pqPrVj7B0aooID7rsqqs7WHaRISE483J64yMvrv7WlAoAnnibhuFsjEWQlfLAVNtiwtm6XfSsRu6886MkxyrJ2W93JxILya0+yv+1jKQyhWMIZjnafVL+vXHrwwiD4/y+A45+AbpLGb4nbul2ujRNBE/r311QLhUu/77tkR2W3H+6xO7iZRsYPH5IfdVSzycdnYP4QxIWXHkRdUA46lzOSrrjNNeVAS8T52ys69Ozw251E78ZcQ0ahZu7xr+tea2RJyCmqlqu9ePZjtmHuF/FtHn6Cs84RXxCo3FRb4nSHk+kNb6yir5hjxjZljxzgVoPiyn7Ew/hqc=
-  app: gde-teste
+  app: gdeifes
   domain: projetogde
   on:
     repo: LEDS/gde-teste
