@@ -29,3 +29,4 @@ script:
   - python manage.py behave
   - cd ..
   - cd ..
+  - sonar-scanner -Dsonar.login=$SONAR_TOKEN 
